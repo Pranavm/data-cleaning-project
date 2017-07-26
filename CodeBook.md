@@ -1,6 +1,6 @@
-##Code Book
+## Code Book
 
-###The Data Set
+### The Data Set
 The Data Set Used for this project is the Human Activity Recognition Using Smartphones Dataset
 
 One of the most exciting areas in all of data science right now is wearable computing - see for example this article . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained:
@@ -11,7 +11,7 @@ Here are the data for the project:
 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-###Feature Selection 
+### Feature Selection 
 
 The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
 
@@ -68,14 +68,14 @@ tBodyAccJerkMean
 tBodyGyroMean
 tBodyGyroJerkMean
 
-###Data Set Contents
+### Data Set Contents
 - Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
 - Triaxial Angular velocity from the gyroscope. 
 - A 561-feature vector with time and frequency domain variables. 
 - Its activity label. 
 - An identifier of the subject who carried out the experiment.
 
-###Data Set Files
+### Data Set Files
 
 The data set contained the following files
 
@@ -106,7 +106,7 @@ The following files are available for the train and test data. Their description
 - 'train/Inertial Signals/body_gyro_x_train.txt': The angular velocity vector measured by the gyroscope for each window sample. The units are radians/second. 
 
 
-###Cleaning Data
+### Cleaning Data
 For creating the tidy data only the following files were used 
 
 - train/X_train.txt 
@@ -121,7 +121,7 @@ and activity_labels.txt to get the activity names
 
 The functions in the rscript run_analysis.R performs the following trasformations on the data in the 6 files mentioned above 
 
-####mergeTrainAndTestData
+#### mergeTrainAndTestData
 This function performs the follwing transformations on the data
 
 - STEP 1 : The X_train and X_test data are read in as data.table values, rbind is used to combine them
@@ -133,7 +133,7 @@ NOTE:
 - The cbind adds Activity and Subject as the first two columns
 - write.table has row.names set to FALSE
 
-####extractMeanAndStd
+#### extractMeanAndStd
 This function takes the data.frame created by mergeTrainAndTestData and extracts the mean and sd data.
 
 - STEP 1 : Read in the data.frame created by the mergeTrainAndTestData function
@@ -145,7 +145,7 @@ This function takes the data.frame created by mergeTrainAndTestData and extracts
 NOTE:
 -write.table has row.names set to FALSE
 
-####insertActivityNames
+#### insertActivityNames
 Reads in the data extracted by the previous functions and gives meaningfull names to activity labels
 
 - STEP 1 : Reads the activity labels from activity.txt as data.frame
@@ -154,7 +154,7 @@ Reads in the data extracted by the previous functions and gives meaningfull name
 - STEP 4 : Drops the activity index column from the result, since activity name is sufficient
 - STEP 5 : Writes back the data frame to the file
 
-####nameVariables
+#### nameVariables
 Reads in the data.frame from the previous function and gives meaningfull names to the variables
 
 - STEP 1 : Reads in the data.frame from the previous function
@@ -164,7 +164,7 @@ Reads in the data.frame from the previous function and gives meaningfull names t
 - STEP 5 : Set the names of the data frame to the feature list created at STEP 4
 - STEP 6 : Writes back the frame to the file
 
-####getSubjectAndActivityAvg
+#### getSubjectAndActivityAvg
 Reads in the tidy data set from the previous function and creates anohter indepented tidy data set
 
 - STEP 1 : Reads in the data.frame from the previous function

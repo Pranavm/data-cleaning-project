@@ -1,4 +1,4 @@
-##data-cleaning-project
+## data-cleaning-project
 
 This project was created as part of the data-cleaning course in coursera. 
 The repo contains
@@ -10,33 +10,33 @@ For more informations of the data set and the transformations performed on the d
 
 The run_analysis.r script contains the following functions
 
-####mergeTrainAndTestData
+#### mergeTrainAndTestData
 takes the path of the UCI HAR Directory path as arguments and creates a single file by combining the training and test data
 
 If no argument is provided to the function it is assumed that the data directry is named "UCI HAR Dataset" and is present in the present working directory 
 
-####extractMeanAndStd
+#### extractMeanAndStd
 Takes a single argument, the path of the data directory, default is "UCI HAR Dataset"
 
 Returns the data.frame with only mean and std columns extracted from the data set
 
 Also writes the extracted data back to the data.txt file
 
-####insertActivityNames
+#### insertActivityNames
 Takes a single argument, the path of the data directory, default is "UCI HAR Dataset"
 
 Returns the data.frame with the activity indices replaced by activity names
 
 Also writes the result to the data.txt file
 
-####nameVariables
+#### nameVariables
 Takes a single argument, the path of the data directory, default is "UCI HAR Dataset"
 
 Returns the data.frame with the default column values replaced with the names given in the features.txt files
 
 Also writes the result to data.txt file
 
-####getSubjectAndActivityAvg
+#### getSubjectAndActivityAvg
 Takes a single argument, the path of the data directory, default is "UCI HAR Dataset"
 
 Returns a new tidy data.frame with the average of all mean and std values for each activity and each subject. For more info see the CodeBook.md
