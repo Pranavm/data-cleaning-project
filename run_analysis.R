@@ -82,6 +82,8 @@ nameVariables <- function(d = "UCI HAR Dataset") {
     #Get the feature names
     featurelist <- read.table(paste(d, "features.txt", sep = "/"))
     featurelist <- featurelist[[2]]
+    featurelist <- sub("^t", "time", featurelist)
+    featurelist <- sub("^f", "freq", featurelist)
     meanstdfeatures <- grep("(-mean\\(\\))|(-std\\(\\))", featurelist, value = TRUE)
     meanstdfeatures <- c("Activity", "Subject", meanstdfeatures)
     
