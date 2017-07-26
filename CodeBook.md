@@ -124,10 +124,23 @@ The functions in the rscript run_analysis.R performs the following trasformation
 #### mergeTrainAndTestData
 This function performs the follwing transformations on the data
 
-- STEP 1 : The X_train and X_test data are read in as data.table values, rbind is used to combine them
+- STEP 1 : The X_train and X_test data are read in as data.table values, rbind is used to combine them    
+
+```R
+    combineddata  <- rbind(traindata, testdata)
+```
 - STEP 2 : Data in y_trains and y_test are read in as vectors, they are concatenated
+```R
+combinedlabels <- c(trainlabels, testlabels)
+```
 - STEP 3 : Data in subject_train and subject_test are read in as vectors, they are concatenated
+```
+combinedsubject <- c(trainsubject, testsubject)
+```
 - STEP 4 : cbind is used add y (activity label) and subject (the vectors created in STEP 2 & 3) as columns to the data.frame created in STEP1
+```R
+data <- cbind(Activity = combinedlabels, Subject = combinedsubject, combineddata)
+```
 
 NOTE:
 - The cbind adds Activity and Subject as the first two columns
@@ -139,7 +152,13 @@ This function takes the data.frame created by mergeTrainAndTestData and extracts
 - STEP 1 : Read in the data.frame created by the mergeTrainAndTestData function
 - STEP 2 : Read in the featurelist in the features.txt file as a vector
 - STEP 3 : Use grep to find the indices of the features that give mean and std values
+```R
+meanstdfeatures <- grep("(-mean\\(\\))|(-std\\(\\))", featurelist)
+```
 - STEP 4 : Selects from the data.frame only those columns that correspond to the indices obtained above. Used select in dplyr to do this
+```R
+data <- data[, meanstdfeatures]
+```
 - STEP 5 : Writes the data from STEP 4 to file and returns it
 
 NOTE:
@@ -151,8 +170,14 @@ Reads in the data extracted by the previous functions and gives meaningfull name
 - STEP 1 : Reads the activity labels from activity.txt as data.frame
 - STEP 2 : Reads in the data extracted by the previous function
 - STEP 3 : Merges the data in the two data frames Using the activity_index since it,s present in both data frames
+```R
+data <- merge(data, activitytable, by.x = "V1", by.y = "V1")[,union(names(activitytable), names(data)),with = FALSE]
+```
 - STEP 4 : Drops the activity index column from the result, since activity name is sufficient
 - STEP 5 : Writes back the data frame to the file
+
+NOTE:
+In STEP3 order of columns is maintained during merge
 
 #### nameVariables
 Reads in the data.frame from the previous function and gives meaningfull names to the variables
